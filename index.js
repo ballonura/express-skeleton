@@ -8,9 +8,7 @@ const PORT = environmentConfig.PORT || 3000;
 app.use(express.json())
 
 /* ROUTES */
-import userRoute from './routes/userRoute.js';
-app.use('/api/users', userRoute)
+import allRoutes from './routes/index.js';
+allRoutes.forEach(({ path, router }) => app.use(`/api${path}`, router));
 
-app.listen(PORT, () => console.log(`Listen on port: ${PORT}`));
-
-console.log(123);
+app.listen(PORT);
